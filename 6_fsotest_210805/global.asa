@@ -1,0 +1,31 @@
+<SCRIPT LANGUAGE=VBscript RUNAT=Server>
+
+Sub Application_OnStart
+   strFname=Server.MapPath(".")+"\visit.txt"   
+   'visit.txt가 있는 곳의 경로지정. 현재 global.asa 가 있는 디렉토리에 존재하는 visit.txt로 설정한다.
+   Set objFile = Server.CreateObject("Scripting.FileSystemObject")
+   Set out = objFile.OpenTextFile(strFname,1)
+   Application("visit") = out.ReadLine    '텍스트 파일안에 있는 숫자를 읽어온다.
+End Sub
+
+Sub Application_OnEnd
+   Set objFile = Server.CreateObject("Scripting.FileSystemObject")
+   Set out = objFile.CreateTextFile(Application("Fname"),true)
+   out.WriteLine(Application("visit"))     '텍스트 파일에 현재까지의 방문자의 총 수를 저장한다.
+End Sub
+
+Sub Session_OnStart
+   Application.Lock
+   Application("visit") = Application("visit") + 1
+   Application.UnLock
+
+   If Application("visit") MOD 5 =0 then
+      Set objFile = Server.CreateObject("Scripting.FileSystemObject")
+      Set out = objFile.CreateTextFile(Application("Fname"),true)
+      Application.Lock
+      out.WriteLine(Application("visit"))
+      Application.UnLock
+   End If
+End Sub
+
+</SCRIPT>

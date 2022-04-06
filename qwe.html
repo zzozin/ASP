@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>alert 나오게</title>
+	<meta charset="utf-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+	
+	<script>	
+	$(document).ready(function(){ 
+		$("input[name=write]").click(function(){
+				if($("input[name=1]").val().length==0){ alert("이름."); $("input[name=1]").focus(); return false; }
+				if($("input[name=2]").val().length==0){ alert("이메일을 입력하세요."); $("input[name=2]").focus(); return false; }
+				if($("input[name=3]").val().length==0){ alert("휴대폰번호를 입력하세요."); $("input[name=3]").focus(); return false; }
+				if($("textarea").val().length==0){ alert("메세지를 입력하세요."); $("input[name=4]").focus(); return false; }
+			});		
+	});
+	</script>
+	
+	<style>
+	#contact {width:300px;}
+	#contact * {margin:5px; font-family:나눔고딕;}
+	</style>
+</head>
+<body>
+
+<article id="contact">
+	<h1>고객센타</h1>
+	<form>
+			<input type="text" name="1" id="Name" placeholder="Name"><br>
+			<input type="email" name="2" id="Email" placeholder="Email" ><br>
+			<input type="tel" name="3"	id="Phone" placeholder="000-0000-0000" ><br>
+			<textarea rows="3" name="4" cols="20" id="Message" placeholder="문의 내용"></textarea><br>
+			<input type="button" id="submit" name="write" value="전송하기" onclick="sendit()">
+	</form>
+</article>
+
+</body>
+</html>	

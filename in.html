@@ -1,0 +1,41 @@
+<html>
+    <meta charset="utf-8">
+    <head></head>
+<body>
+    <script src="//code.jquery.com/jquery.min.js"></script>
+
+<input type='button' id="button1" value='버튼1'/>
+
+<script>
+$("#button1").click(function() {
+	alert("버튼1을 누르셨습니다.");
+});
+</script>
+</body>
+</html>
+  <script>
+  //function doSearch()
+          {
+             var searchString =document.frmSearch.searchString.value;
+             if (CheckStr(searchString, " ", "")==0){
+                alert("검색어를 기입해 주세요");
+                document.frmSearch.searchString.value= "";
+                document.frmSearch.searchString.focus();
+                return;
+             }
+             document.frmSearch.submit();
+          }
+       
+          function CheckStr(strOriginal, strFind, strChange){
+              var position, strOri_Length;
+              position = strOriginal.indexOf(strFind);
+          
+              while (position != -1){
+                strOriginal = strOriginal.replace(strFind, strChange);
+                position = strOriginal.indexOf(strFind);
+             }
+       
+             strOri_Length = strOriginal.length;
+             return strOri_Length;
+          }
+          </script>
